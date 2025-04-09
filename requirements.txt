@@ -18,8 +18,8 @@ python-dotenv>=1.0.0,<2.0.0
 # Scheduling
 APScheduler>=3.10.0,<4.0.0
 
-# Blockchain
-alchemy-sdk>=2.10.0,<3.0.0
+# Web3 and Blockchain
+web3>=6.0.0,<7.0.0
 
 # Additional Dependencies
 aiosignal>=1.3.0,<2.0.0
