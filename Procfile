@@ -1,0 +1,1 @@
+worker: python updater2.py 
