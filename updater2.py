@@ -55,11 +55,11 @@ BINANCE_API_KEY = os.environ.get("BINANCE_API_KEY", "")
 BINANCE_API_SECRET = os.environ.get("BINANCE_API_SECRET", "")
 
 # TimescaleDB configuration
-DB_HOST = os.environ.get("TIMESCALE_HOST", "localhost")
-DB_PORT = os.environ.get("TIMESCALE_PORT", "5432")
-DB_NAME = os.environ.get("TIMESCALE_DB", "crypto_data")
-DB_USER = os.environ.get("TIMESCALE_USER", "postgres")
-DB_PASSWORD = os.environ.get("TIMESCALE_PASSWORD", "postgres")
+DB_HOST = os.environ.get("TIMESCALE_HOST", "kzypn7lcag.whcsa0z11a.tsdb.cloud.timescale.com")
+DB_PORT = os.environ.get("TIMESCALE_PORT", "34569")
+DB_NAME = os.environ.get("TIMESCALE_DB", "tsdb")
+DB_USER = os.environ.get("TIMESCALE_USER", "tsdbadmin")
+DB_PASSWORD = os.environ.get("TIMESCALE_PASSWORD", "flwmwoa6fz4w1u3w")
 
 # Logging configuration
 logging.basicConfig(
