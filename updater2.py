@@ -7,24 +7,19 @@ with CryptoCompare as a fallback, and updates the TimescaleDB database.
 """
 
 import os
-import sys
 import json
-import time
 import logging
-import requests
 import pandas as pd
 import psycopg2
 from psycopg2.extras import execute_values
-from datetime import datetime, timedelta
+from datetime import datetime
 import asyncio
 import aiohttp
-from typing import Dict, List, Any, Optional, Tuple
+from typing import Dict, Optional
 from dotenv import load_dotenv
-import schedule
 import traceback
 import ccxt
 import ccxt.async_support as ccxt_async
-import random
 from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.interval import IntervalTrigger
 
@@ -100,7 +95,7 @@ def load_symbols_from_catalog():
         if not binance_symbols:
             logger.error("No Binance symbols found in catalog.json")
             # Fallback to a default list of popular symbols
-            return [[
+            return [
                 # USDT Pairs - Major
                 "BTC/USDT", "ETH/USDT", "BNB/USDT", "SOL/USDT", "XRP/USDT",
                 "DOGE/USDT", "ADA/USDT", "AVAX/USDT", "LINK/USDT", "DOT/USDT",
@@ -144,8 +139,8 @@ def load_symbols_from_catalog():
                 
                 # Additional Important Pairs
                 "BLUR/ETH", "RNDR/USDT", "INJ/USDT", "SUI/USDT", "FET/USDT",
-                "AGIX/USDT", "MINA/USDT", "CFX/USDT", "HOOK/USDT", "MAGIC/USDT"]]
-                    
+                "AGIX/USDT", "MINA/USDT", "CFX/USDT", "HOOK/USDT", "MAGIC/USDT"
+            ]
         
         logger.info(f"Loaded {len(binance_symbols)} symbols from catalog.json")
         return binance_symbols
@@ -153,7 +148,7 @@ def load_symbols_from_catalog():
     except Exception as e:
         logger.error(f"Error loading symbols from catalog.json: {e}")
         # Fallback to a default list of popular symbols
-        return ["nothing to see here..."]
+        return ["BTC/USDT", "ETH/USDT", "BNB/USDT"]  # Minimal fallback list
 
 class TimescaleDBManager:
     def __init__(self, host, port, dbname, user, password):
@@ -980,6 +975,10 @@ async def update_prices():
     
     # Load symbols from catalog
     symbols = load_symbols_from_catalog()
+    
+    # Ensure symbols is a flat list
+    if symbols and isinstance(symbols[0], list):
+        symbols = symbols[0]  # Take the first list if we get a list of lists
     
     try:
         # Process symbols in batches
