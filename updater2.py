@@ -148,7 +148,50 @@ def load_symbols_from_catalog():
     except Exception as e:
         logger.error(f"Error loading symbols from catalog.json: {e}")
         # Fallback to a default list of popular symbols
-        return ["BTC/USDT", "ETH/USDT", "BNB/USDT"]  # Minimal fallback list
+        return [ # USDT Pairs - Major
+                "BTC/USDT", "ETH/USDT", "BNB/USDT", "SOL/USDT", "XRP/USDT",
+                "DOGE/USDT", "ADA/USDT", "AVAX/USDT", "LINK/USDT", "DOT/USDT",
+                "MATIC/USDT", "SHIB/USDT", "LTC/USDT", "UNI/USDT", "ATOM/USDT",
+                "ETC/USDT", "XLM/USDT", "BCH/USDT", "NEAR/USDT", "FIL/USDT",
+                
+                # USDT Pairs - DeFi & New
+                "APT/USDT", "OP/USDT", "ARB/USDT", "BERA/USDT", "HBAR/USDT",
+                "AAVE/USDT", "GRT/USDT", "ALGO/USDT", "FTM/USDT", "SAND/USDT",
+                "MANA/USDT", "GALA/USDT", "THETA/USDT", "EGLD/USDT", "EOS/USDT",
+                
+                # USDT Pairs - Gaming & NFT
+                "AXS/USDT", "IMX/USDT", "BLUR/USDT", "PEPE/USDT", "FLOKI/USDT",
+                
+                # BTC Cross Pairs
+                "ETH/BTC", "BNB/BTC", "SOL/BTC", "XRP/BTC", "ADA/BTC",
+                "DOT/BTC", "MATIC/BTC", "AVAX/BTC", "LINK/BTC", "UNI/BTC",
+                
+                # ETH Cross Pairs
+                "BNB/ETH", "SOL/ETH", "LINK/ETH", "MATIC/ETH", "AAVE/ETH",
+                "UNI/ETH", "AVAX/ETH", "DOT/ETH", "ADA/ETH", "DOGE/ETH",
+                
+                # USDC Pairs - Major
+                "BTC/USDC", "ETH/USDC", "SOL/USDC", "XRP/USDC", "BNB/USDC",
+                "MATIC/USDC", "AVAX/USDC", "LINK/USDC", "DOT/USDC", "ADA/USDC",
+                
+                # USDC Pairs - DeFi
+                "AAVE/USDC", "UNI/USDC", "GRT/USDC", "COMP/USDC", "SNX/USDC",
+                "CRV/USDC", "MKR/USDC", "YFI/USDC", "SUSHI/USDC", "BAL/USDC",
+                
+                # BUSD Pairs - Major
+                "BTC/BUSD", "ETH/BUSD", "BNB/BUSD", "SOL/BUSD", "XRP/BUSD",
+                "DOGE/BUSD", "ADA/BUSD", "AVAX/BUSD", "LINK/BUSD", "DOT/BUSD",
+                
+                # New & Trending Pairs
+                "BERA/BTC", "BERA/USDC", "BONK/USDT", "JTO/USDT", "SEI/USDT",
+                "TIA/USDT", "PYTH/USDT", "WIF/USDT", "JUP/USDT", "ORDI/USDT",
+                
+                # Stablecoins Cross Pairs
+                "USDC/USDT", "BUSD/USDT", "USDT/DAI", "USDC/BUSD", "TUSD/USDT",
+                
+                # Additional Important Pairs
+                "BLUR/ETH", "RNDR/USDT", "INJ/USDT", "SUI/USDT", "FET/USDT",
+                "AGIX/USDT", "MINA/USDT", "CFX/USDT", "HOOK/USDT", "MAGIC/USDT"]  # Minimal fallback list
 
 class TimescaleDBManager:
     def __init__(self, host, port, dbname, user, password):
