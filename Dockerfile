@@ -6,17 +6,17 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     gcc \
     python3-dev \
+    build-essential \
     && rm -rf /var/lib/apt/lists/*
+
+# Upgrade pip and install wheel
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 
 # Copy requirements first to leverage Docker cache
 COPY requirements.txt .
 
-# Create and activate virtual environment
-RUN python -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
-
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Python dependencies with increased verbosity and timeout
+RUN pip install --no-cache-dir --verbose --timeout 300 -r requirements.txt
 
 # Copy the rest of the application
 COPY . .
